@@ -600,12 +600,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-mongodb.git",
-                "reference": "22fbfefa02a8d516265f25e9132c1e31f77f5010"
+                "reference": "fe0f2b0f10714fb528f98ba800646e4f78ef522e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-mongodb/zipball/22fbfefa02a8d516265f25e9132c1e31f77f5010",
-                "reference": "22fbfefa02a8d516265f25e9132c1e31f77f5010",
+                "url": "https://api.github.com/repos/yiisoft/yii2-mongodb/zipball/fe0f2b0f10714fb528f98ba800646e4f78ef522e",
+                "reference": "fe0f2b0f10714fb528f98ba800646e4f78ef522e",
                 "shasum": ""
             },
             "require": {
@@ -640,7 +640,7 @@
                 "mongodb",
                 "yii2"
             ],
-            "time": "2016-07-06 10:59:04"
+            "time": "2016-08-10 13:22:55"
         }
     ],
     "packages-dev": [],

@@ -13,7 +13,6 @@ namespace andrew72ru\rbac\components;
 
 use yii\mongodb\Query;
 use yii\mongodb\rbac\MongoDbManager;
-use yii\rbac\DbManager as BaseDbManager;
 
 /**
  * This Auth manager changes visibility and signature of some methods from \yii\rbac\DbManager.
@@ -23,29 +22,39 @@ use yii\rbac\DbManager as BaseDbManager;
 class DbManager extends MongoDbManager implements ManagerInterface
 {
     /**
-     * @param  int|null $type         If null will return all auth items.
-     * @param  array    $excludeItems Items that should be excluded from result array.
+     * @param  int|null $type If null will return all auth items.
+     * @param  array $excludeItems Items that should be excluded from result array.
      * @return array
      */
     public function getItems($type = null, $excludeItems = [])
     {
+        /** @var Query $query */
         $query = (new Query())
             ->from($this->itemCollection);
 
-        if ($type !== null) {
-            $query->where(['type' => $type]);
-        } else {
-            $query->orderBy('type');
+        $notInArr = [];
+        foreach ($excludeItems as $name)
+        {
+            $notInArr[] = $name;
+//            $query->andWhere('name != :item', ['item' => $name]);
         }
+        if(!empty($notInArr))
+            $query->where(['name' => ['$nin' => $notInArr]]);
 
-        foreach ($excludeItems as $name) {
-            $query->andWhere('name != :item', ['item' => $name]);
+        if ($type !== null)
+        {
+            $query->andWhere(['type' => $type]);
+        } else
+        {
+            $query->orderBy('type');
         }
 
         $items = [];
 
-        foreach ($query->all($this->db) as $row) {
-            $items[$row['name']] = $this->populateItem($row);
+        foreach ($query->all($this->db) as $row)
+        {
+            if(array_key_exists('name', $row))
+                $items[$row['name']] = $this->populateItem($row);
         }
 
         return $items;
@@ -59,18 +68,29 @@ class DbManager extends MongoDbManager implements ManagerInterface
      */
     public function getItemsByUser($userId)
     {
-        if (empty($userId)) {
+        if (empty($userId))
+        {
             return [];
         }
+        $assignmentsQuery = new Query();
+        $assignments = $assignmentsQuery->from($this->assignmentCollection)
+            ->where(['user_id' => (string) $userId])
+            ->indexBy('item_name')
+            ->all();
 
-        $query = (new Query)->select('b.*')
-            ->from(['a' => $this->assignmentCollection, 'b' => $this->itemCollection])
-            ->where('{{a}}.[[item_name]]={{b}}.[[name]]')
-            ->andWhere(['a.user_id' => (string) $userId]);
+        if(empty($assignments))
+            return [];
+
+        $itemQuery = new Query();
+        $items = $itemQuery->from($this->itemCollection)
+            ->where(['name' => array_keys($assignments)])
+            ->all();
 
         $roles = [];
-        foreach ($query->all($this->db) as $row) {
-            $roles[$row['name']] = $this->populateItem($row);
+        foreach ($items as $row)
+        {
+            if(array_key_exists('name', $row))
+                $roles[$row['name']] = $this->populateItem($row);
         }
         return $roles;
     }

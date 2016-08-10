@@ -22,33 +22,19 @@ class AssignmentController extends Controller
 {
     /**
      * Show form with auth items for user.
-     * 
+     *
      * @param int $id
+     * @return string
      */
     public function actionAssign($id)
     {
         $model = Yii::createObject([
-            'class'   => Assignment::className(),
+            'class' => Assignment::className(),
             'user_id' => $id,
         ]);
-        
-        if ($model->load(\Yii::$app->request->post()) && $model->updateAssignments()) {
-        }
 
         return \andrew72ru\rbac\widgets\Assignments::widget([
             'model' => $model,
         ]);
-        /*$model = Yii::createObject([
-            'class'   => Assignment::className(),
-            'user_id' => $id,
-        ]);
-        
-        if ($model->load(Yii::$app->request->post()) && $model->updateAssignments()) {
-            
-        }
-        
-        return $this->render('assign', [
-            'model' => $model,
-        ]);*/
     }
 }
