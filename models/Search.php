@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\models;
+namespace andrew72ru\rbac\models;
 
 use yii\base\Model;
 use yii\data\ArrayDataProvider;
-use yii\db\Query;
+use yii\mongodb\Query;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -39,7 +39,7 @@ class Search extends Model
     public $rule_name;
     
     /**
-     * @var \dektrium\rbac\components\DbManager
+     * @var \andrew72ru\rbac\components\DbManager
      */
     protected $manager;
     
@@ -75,10 +75,10 @@ class Search extends Model
     public function search($params = [])
     {
         $dataProvider = \Yii::createObject(ArrayDataProvider::className());
-        
+
         $query = (new Query)->select(['name', 'description', 'rule_name'])
                 ->andWhere(['type' => $this->type])
-                ->from($this->manager->itemTable);
+                ->from($this->manager->itemCollection);
         
         if ($this->load($params) && $this->validate()) {
             $query->andFilterWhere(['like', 'name', $this->name])
@@ -101,7 +101,7 @@ class Search extends Model
         $rows = (new Query)
             ->select(['name'])
             ->andWhere(['type' => $this->type])
-            ->from($this->manager->itemTable)
+            ->from($this->manager->itemCollection)
             ->all();
 
         return ArrayHelper::map($rows, 'name', 'name');
@@ -116,7 +116,7 @@ class Search extends Model
     {
         $rows = (new Query())
             ->select(['name'])
-            ->from($this->manager->ruleTable)
+            ->from($this->manager->ruleCollection)
             ->all();
 
         return ArrayHelper::map($rows, 'name', 'name');

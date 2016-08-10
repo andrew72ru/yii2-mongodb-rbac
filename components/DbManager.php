@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\components;
+namespace andrew72ru\rbac\components;
 
-use yii\db\Query;
+use yii\mongodb\Query;
+use yii\mongodb\rbac\MongoDbManager;
 use yii\rbac\DbManager as BaseDbManager;
 
 /**
@@ -19,7 +20,7 @@ use yii\rbac\DbManager as BaseDbManager;
  *
  * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
-class DbManager extends BaseDbManager implements ManagerInterface
+class DbManager extends MongoDbManager implements ManagerInterface
 {
     /**
      * @param  int|null $type         If null will return all auth items.
@@ -29,7 +30,7 @@ class DbManager extends BaseDbManager implements ManagerInterface
     public function getItems($type = null, $excludeItems = [])
     {
         $query = (new Query())
-            ->from($this->itemTable);
+            ->from($this->itemCollection);
 
         if ($type !== null) {
             $query->where(['type' => $type]);
@@ -63,7 +64,7 @@ class DbManager extends BaseDbManager implements ManagerInterface
         }
 
         $query = (new Query)->select('b.*')
-            ->from(['a' => $this->assignmentTable, 'b' => $this->itemTable])
+            ->from(['a' => $this->assignmentCollection, 'b' => $this->itemCollection])
             ->where('{{a}}.[[item_name]]={{b}}.[[name]]')
             ->andWhere(['a.user_id' => (string) $userId]);
 

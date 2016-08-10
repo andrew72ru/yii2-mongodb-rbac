@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac;
+namespace andrew72ru\rbac;
 
-use dektrium\rbac\components\DbManager;
-use dektrium\rbac\components\ManagerInterface;
-use dektrium\user\Module as UserModule;
+use andrew72ru\rbac\components\DbManager;
+use andrew72ru\rbac\components\ManagerInterface;
+use andrew72ru\user\Module as UserModule;
 use yii\base\Application;
 use yii\web\Application as WebApplication;
 use yii\console\Application as ConsoleApplication;

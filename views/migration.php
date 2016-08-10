@@ -16,7 +16,7 @@
 echo "<?php\n";
 ?>
 
-use dektrium\rbac\migrations\Migration;
+use andrew72ru\rbac\migrations\Migration;
 
 class <?= $className ?> extends Migration
 {

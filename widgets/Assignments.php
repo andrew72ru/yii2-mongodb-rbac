@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\widgets;
+namespace andrew72ru\rbac\widgets;
 
-use dektrium\rbac\components\DbManager;
-use dektrium\rbac\models\Assignment;
+use andrew72ru\rbac\components\DbManager;
+use andrew72ru\rbac\models\Assignment;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Widget;

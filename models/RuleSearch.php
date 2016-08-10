@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\models;
+namespace andrew72ru\rbac\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\data\ArrayDataProvider;
-use yii\db\Query;
+use yii\mongodb\Query;
 
 /**
  * Search model for rules.
@@ -54,7 +54,7 @@ class RuleSearch extends Rule
     {
         $query = (new Query())
             ->select(['name', 'data', 'created_at', 'updated_at'])
-            ->from($this->authManager->ruleTable)
+            ->from($this->authManager->ruleCollection)
             ->orderBy(['name' => SORT_ASC]);
 
         $this->load($params);
@@ -83,7 +83,7 @@ class RuleSearch extends Rule
     {
         $query = (new Query())
             ->select(['id' => 'name', 'text' => 'name'])
-            ->from($this->authManager->ruleTable)
+            ->from($this->authManager->ruleCollection)
             ->orderBy(['name' => SORT_ASC])
             ->limit(10);
         

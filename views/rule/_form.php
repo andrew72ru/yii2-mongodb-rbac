@@ -11,7 +11,7 @@
 
 /**
  * @var $this  \yii\web\View
- * @var $model \dektrium\rbac\models\Rule
+ * @var $model \andrew72ru\rbac\models\Rule
  */
 
 use yii\widgets\ActiveForm;

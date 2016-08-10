@@ -11,7 +11,7 @@
 
 /**
  * @var $dataProvider array
- * @var $filterModel  dektrium\rbac\models\Search
+ * @var $filterModel  andrew72ru\rbac\models\Search
  * @var $this         yii\web\View
  */
 
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@dektrium/rbac/views/layout.php') ?>
+<?php $this->beginContent('@andrew72ru/rbac/views/layout.php') ?>
 
 <?php Pjax::begin() ?>
 

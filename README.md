@@ -1,26 +1,19 @@
-# Yii2-rbac [![Total Downloads](https://img.shields.io/packagist/dt/dektrium/yii2-rbac.svg?style=flat-square)](https://packagist.org/packages/dektrium/yii2-rbac) [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+# Yii2-mongodb-rbac
 
-Yii2-rbac provides a way to manage your application's RBAC structure and includes following features:
+Yii2-mongodb-rbac provides a way to manage your application's RBAC structure and includes following features:
 
 - Allows CRUD operations for auth items (roles and permissions) and rules.
 - Allows to assign multiple roles or permissions to user (using bundled widget).
 - Allows to create console migration for creating/updating RBAC items.
 - Integrated with [Yii2-user](https://github.com/dektrium/yii2-user) - flexible user management module
 
-> **NOTE:** Module is in initial development. Anything may change at any time.
+# ATTENTION
+
+This module in deep alfa-version! **Do not** use it in production!
 
 ## Documentation
 
 [Installation instructions](docs/installation.md) | [Definitive guide to Yii2-rbac](docs/README.md)
-
-## Support
-
-If you have any questions or problems with Yii2-rbac you can ask them on [our forum](http://dektrium.com).
-
-## Contributing to this project
-
-Anyone and everyone is welcome to contribute. Please take a moment to review the
-[guidelines for contributing](.github/CONTRIBUTING.md).
 
 ## License
 

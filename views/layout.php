@@ -14,7 +14,7 @@
  * @var $content string
  */
 
-use dektrium\rbac\widgets\Menu;
+use andrew72ru\rbac\widgets\Menu;
 
 ?>
 

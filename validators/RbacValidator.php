@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\validators;
+namespace andrew72ru\rbac\validators;
 
 use yii\validators\Validator;
 
@@ -18,7 +18,7 @@ use yii\validators\Validator;
  */
 class RbacValidator extends Validator
 {
-    /** @var \dektrium\rbac\components\DbManager */
+    /** @var \andrew72ru\rbac\components\DbManager */
     protected $manager;
     
     /** @inheritdoc */

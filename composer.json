@@ -1,32 +1,31 @@
 {
   "name": "dektrium/yii2-rbac",
-  "description": "RBAC management module for Yii2",
-  "keywords": ["yii2", "yii2-rbac", "rbac management", "dektrium", "rbac gui", "yii rbac", "rbac module"],
+  "description": "RBAC management with MongoDB module for Yii2",
+  "keywords": ["yii2", "yii2-rbac", "rbac management", "mongodb", "rbac gui", "yii rbac", "rbac module"],
   "type": "yii2-extension",
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/dektrium/yii2-rbac/issues?state=open",
-    "source": "https://github.com/dektrium/yii2-rbac"
+    "source": "https://github.com/andrew72ru/yii2-mongodb-rbac"
   },
   "authors": [
     {
-      "name": "Dmitry Erofeev",
-      "email": "dmeroff@gmail.com",
-      "homepage": "http://dmeroff.ru"
+      "name": "Andrew Zhdanovskih",
+      "email": "andrew72ru@gmail.com"
     }
   ],
   "minimum-stability": "dev",
   "require": {
-    "yiisoft/yii2": "^2.0.8",
+    "yiisoft/yii2": ">=2.0.9",
+    "yiisoft/yii2-mongodb": "~2.1.0",
     "kartik-v/yii2-widget-select2": "^2.0"
   },
   "autoload": {
     "psr-4": {
-      "dektrium\\rbac\\": ""
+      "andrew72ru\\rbac\\": ""
     }
   },
   "extra": {
-    "bootstrap": "dektrium\\rbac\\Bootstrap",
+    "bootstrap": "andrew72ru\\rbac\\Bootstrap",
     "branch-alias": {
       "dev-master": "1.0.x-dev"
     }

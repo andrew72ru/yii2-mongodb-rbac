@@ -12,7 +12,7 @@
 /**
  * @var $dataProvider array
  * @var $this         yii\web\View
- * @var $filterModel  dektrium\rbac\models\Search
+ * @var $filterModel  andrew72ru\rbac\models\Search
  */
 
 use kartik\select2\Select2;
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@dektrium/rbac/views/layout.php') ?>
+<?php $this->beginContent('@andrew72ru/rbac/views/layout.php') ?>
 
 <?php Pjax::begin() ?>
 

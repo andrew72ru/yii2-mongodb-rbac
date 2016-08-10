@@ -10,7 +10,7 @@
  */
 
 /**
- * @var $model \dektrium\rbac\models\Rule
+ * @var $model \andrew72ru\rbac\models\Rule
  * @var $this  \yii\web\View
  */
 
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@dektrium/rbac/views/layout.php') ?>
+<?php $this->beginContent('@andrew72ru/rbac/views/layout.php') ?>
 
 <?= $this->render('_form', [
     'model' => $model,

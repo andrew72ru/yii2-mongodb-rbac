@@ -10,7 +10,7 @@
  */
 
 /**
- * @var $model dektrium\rbac\models\Role
+ * @var $model andrew72ru\rbac\models\Role
  * @var $this  yii\web\View
  */
 
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php $this->beginContent('@dektrium/rbac/views/layout.php') ?>
+<?php $this->beginContent('@andrew72ru/rbac/views/layout.php') ?>
 
 <?= $this->render('_form', [
     'model' => $model,

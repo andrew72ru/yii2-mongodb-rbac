@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\widgets;
+namespace andrew72ru\rbac\widgets;
 
 use yii\bootstrap\Nav;
 
@@ -34,7 +34,7 @@ class Menu extends Nav
     {
         parent::init();
 
-        $userModuleClass       = 'dektrium\user\Module';
+        $userModuleClass       = 'andrew72ru\user\Module';
         $isUserModuleInstalled = \Yii::$app->getModule('user') instanceof $userModuleClass;
 
         $this->items = [

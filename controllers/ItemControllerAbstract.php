@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\controllers;
+namespace andrew72ru\rbac\controllers;
 
 use yii\base\InvalidConfigException;
 use yii\base\Model;
@@ -17,7 +17,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
-use dektrium\rbac\models\Search;
+use andrew72ru\rbac\models\Search;
 
 /**
  * @author Dmitry Erofeev <dmeroff@gmail.com>
@@ -26,7 +26,7 @@ abstract class ItemControllerAbstract extends Controller
 {
     /**
      * @param  string $name
-     * @return \dektrium\rbac\models\Role|\dektrium\rbac\models\Permission
+     * @return \andrew72ru\rbac\models\Role|\andrew72ru\rbac\models\Permission
      */
     abstract protected function getItem($name);
 
@@ -63,7 +63,7 @@ abstract class ItemControllerAbstract extends Controller
         $filterModel = new Search($this->type);
         return $this->render('index', [
             'filterModel'  => $filterModel,
-            'dataProvider' => $filterModel->search(\Yii::$app->request->get()),
+            'dataProvider' => $filterModel->search(\Yii::$app->request->queryParams),
         ]);
     }
 
@@ -74,7 +74,7 @@ abstract class ItemControllerAbstract extends Controller
      */
     public function actionCreate()
     {
-        /** @var \dektrium\rbac\models\Role|\dektrium\rbac\models\Permission $model */
+        /** @var \andrew72ru\rbac\models\Role|\andrew72ru\rbac\models\Permission $model */
         $model = \Yii::createObject([
             'class'    => $this->modelClass,
             'scenario' => 'create',
@@ -100,7 +100,7 @@ abstract class ItemControllerAbstract extends Controller
      */
     public function actionUpdate($name)
     {
-        /** @var \dektrium\rbac\models\Role|\dektrium\rbac\models\Permission $model */
+        /** @var \andrew72ru\rbac\models\Role|\andrew72ru\rbac\models\Permission $model */
         $item  = $this->getItem($name);
         $model = \Yii::createObject([
             'class'    => $this->modelClass,

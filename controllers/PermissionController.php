@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace dektrium\rbac\controllers;
+namespace andrew72ru\rbac\controllers;
 
 use yii\rbac\Permission;
 use yii\web\NotFoundHttpException;
@@ -21,7 +21,7 @@ use yii\rbac\Item;
 class PermissionController extends ItemControllerAbstract
 {
     /** @var string */
-    protected $modelClass = 'dektrium\rbac\models\Permission';
+    protected $modelClass = 'andrew72ru\rbac\models\Permission';
     
     /** @var int */
     protected $type = Item::TYPE_PERMISSION;
