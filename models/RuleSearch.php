@@ -82,15 +82,19 @@ class RuleSearch extends Rule
     public function getRuleNames($searchQuery = null)
     {
         $query = (new Query())
-            ->select(['id' => 'name', 'text' => 'name'])
             ->from($this->authManager->ruleCollection)
             ->orderBy(['name' => SORT_ASC])
             ->limit(10);
         
         if ($searchQuery) {
-            $query->where(['LIKE', 'LOWER(name)', mb_strtolower($searchQuery)]);
+            $query->where(['name' => ['$regex' => new \MongoDB\BSON\Regex($searchQuery, 'i')]]);
         }
 
-        return $query->all();
+        $ret = [];
+        foreach($query->all() as $row)
+            if(array_key_exists('name', $row))
+                $ret[] = ['id' => $row['name'], 'text' => $row['name']];
+
+        return $ret;
     }
 }
