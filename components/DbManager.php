@@ -61,6 +61,61 @@ class DbManager extends MongoDbManager implements ManagerInterface
     }
 
     /**
+     * @inheritdoc
+     */
+    public function getAssignments($userId)
+    {
+        if(empty($userId))
+            return [];
+
+        if (is_numeric($userId))
+            return parent::getAssignments($userId);
+
+        if(($userId = $this->userIdByMongo($userId)) !== null)
+            return parent::getAssignments($userId);
+
+        return [];
+    }
+
+    /**
+     * @param \yii\rbac\Role $role
+     * @param int|string $userId
+     * @return null|\yii\rbac\Assignment
+     */
+    public function assign($role, $userId)
+    {
+        if(is_numeric($userId))
+            return parent::assign($role, $userId);
+
+        if(($userId = $this->userIdByMongo($userId)) !== null)
+            return parent::assign($role, $userId);
+
+        return null;
+    }
+
+    /**
+     * @param $value
+     * @return mixed|null
+     */
+    private function userIdByMongo($value)
+    {
+        try
+        {
+            $mongoId = new \MongoDB\BSON\ObjectID($value);
+
+            /** @var \yii\web\IdentityInterface|\yii\mongodb\ActiveRecord $class */
+            $class = \Yii::$app->user->identityClass;
+            /** @var \yii\db\ActiveRecord $user */
+            $user = $class::findOne($mongoId);
+
+            if ($user !== null)
+                return ($user->id);
+
+        } catch (\Exception $e) {}
+        return null;
+    }
+
+    /**
      * Returns both roles and permissions assigned to user.
      *
      * @param  integer $userId

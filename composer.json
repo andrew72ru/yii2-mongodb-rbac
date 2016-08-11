@@ -28,6 +28,10 @@
     "bootstrap": "andrew72ru\\rbac\\Bootstrap",
     "branch-alias": {
       "dev-master": "1.0.x-dev"
-    }
+    },
+    "asset-vcs-driver-options": {
+      "github-no-api": true
+    },
+    "asset-pattern-skip-version": "(-build)"
   }
 }
