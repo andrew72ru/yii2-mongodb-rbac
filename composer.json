@@ -1,5 +1,5 @@
 {
-  "name": "dektrium/yii2-rbac",
+  "name": "andrew72ru/yii2-mongodb-rbac",
   "description": "RBAC management with MongoDB module for Yii2",
   "keywords": ["yii2", "yii2-rbac", "rbac management", "mongodb", "rbac gui", "yii rbac", "rbac module"],
   "type": "yii2-extension",
