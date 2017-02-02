@@ -17,9 +17,11 @@ use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
+use yii\mongodb\validators\MongoIdValidator;
 
 /**
- * @author Dmitry Erofeev <dmeroff@gmail.com>
+ * Class Assignment
+ * @package andrew72ru\rbac\models
  */
 class Assignment extends Model
 {
@@ -75,7 +77,7 @@ class Assignment extends Model
         return [
             ['user_id', 'required'],
             ['items', RbacValidator::className()],
-            ['user_id', 'integer']
+            ['user_id', MongoIdValidator::className(), 'forceFormat' => 'string']
         ];
     }
 
@@ -96,11 +98,13 @@ class Assignment extends Model
         $assignedItems = $this->manager->getItemsByUser($this->user_id);
         $assignedItemsNames = array_keys($assignedItems);
 
-        foreach (array_diff($assignedItemsNames, $this->items) as $item) {
+        foreach (array_diff($assignedItemsNames, $this->items) as $item)
+        {
             $this->manager->revoke($assignedItems[$item], $this->user_id);
         }
 
-        foreach (array_diff($this->items, $assignedItemsNames) as $item) {
+        foreach (array_diff($this->items, $assignedItemsNames) as $item)
+        {
             $this->manager->assign($this->manager->getItem($item), $this->user_id);
         }
 

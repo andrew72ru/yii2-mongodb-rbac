@@ -20,8 +20,6 @@ use yii\base\Widget;
 /**
  * This widget may be used in user update form and provides ability to assign
  * multiple auth items to the user.
- * 
- * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class Assignments extends Widget
 {
@@ -44,12 +42,14 @@ class Assignments extends Widget
     /** @inheritdoc */
     public function run()
     {
+        /** @var Assignment $model */
         $model = Yii::createObject([
             'class'   => Assignment::className(),
             'user_id' => $this->userId,
         ]);
-        
-        if ($model->load(\Yii::$app->request->post())) {
+
+        if ($model->load(\Yii::$app->request->post()))
+        {
             $model->updateAssignments();
         }
         

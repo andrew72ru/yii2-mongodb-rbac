@@ -11,6 +11,7 @@
 
 namespace andrew72ru\rbac\components;
 
+use MongoDB\BSON\ObjectID;
 use yii\mongodb\Query;
 use yii\mongodb\rbac\MongoDbManager;
 
@@ -99,17 +100,21 @@ class DbManager extends MongoDbManager implements ManagerInterface
      */
     private function userIdByMongo($value)
     {
+        if($value instanceof ObjectID)
+            return (string) $value;
+
         try
         {
             $mongoId = new \MongoDB\BSON\ObjectID($value);
 
             /** @var \yii\web\IdentityInterface|\yii\mongodb\ActiveRecord $class */
             $class = \Yii::$app->user->identityClass;
-            /** @var \yii\db\ActiveRecord $user */
+
+            /** @var \yii\db\ActiveRecord|\yii\mongodb\ActiveRecord $user */
             $user = $class::findOne($mongoId);
 
             if ($user !== null)
-                return ($user->id);
+                return (string) ($user->_id);
 
         } catch (\Exception $e) {}
         return null;
@@ -118,7 +123,7 @@ class DbManager extends MongoDbManager implements ManagerInterface
     /**
      * Returns both roles and permissions assigned to user.
      *
-     * @param  integer $userId
+     * @param  integer|string|ObjectID $userId
      * @return array
      */
     public function getItemsByUser($userId)

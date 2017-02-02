@@ -21,16 +21,12 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<?php if ($model->updated): ?>
-
-<?= Alert::widget([
+<?= $model->updated ? Alert::widget([
     'options' => [
         'class' => 'alert-success'
     ],
     'body' => Yii::t('rbac', 'Assignments have been updated'),
-]) ?>
-
-<?php endif ?>
+]) : ''?>
 
 <?php $form = ActiveForm::begin([
     'enableClientValidation' => false,

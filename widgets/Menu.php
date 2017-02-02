@@ -15,8 +15,6 @@ use yii\bootstrap\Nav;
 
 /**
  * Menu widget.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class Menu extends Nav
 {
